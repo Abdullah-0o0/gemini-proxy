@@ -102,6 +102,7 @@ app.all('/v1/*', requireProxySecret, async (req, res) => {
   );
   headers['x-goog-api-key'] = GEMINI_API_KEY; // Gemini's preferred key header
   delete headers['x-proxy-secret'];            // don't forward our internal secret
+  delete headers['content-length'];            // Yeh line add karni hai
 
   // Only send a body on methods that support one
   const bodyMethods = new Set(['POST', 'PUT', 'PATCH']);
